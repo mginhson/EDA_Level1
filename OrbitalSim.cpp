@@ -6,9 +6,11 @@
  */
 
 // Enables M_PI #define in Windows
+//effects on unix?
 #define _USE_MATH_DEFINES
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <math.h>
 
 #include "OrbitalSim.h"
@@ -16,6 +18,11 @@
 
 #define GRAVITATIONAL_CONSTANT 6.6743E-11F
 #define ASTEROIDS_MEAN_RADIUS 4E11F
+
+
+static void translateBody(const EphemeridesBody * const _ephemerid_body, 
+                          OrbitalBody * const _orbital_body);
+
 
 /**
  * @brief Gets a uniform random value in a range
@@ -63,16 +70,29 @@ void configureAsteroid(OrbitalBody *body, float centerMass)
 /**
  * @brief Constructs an orbital simulation
  *
- * @param float The time step
- * @return The orbital simulation
+ * @param timeStep: floating point value, ideally should be a multiple of the FPS,
+ *                  will still work fine otherwise.
+ * @return The constructed orbital simulation. Returns NULL on error.
  */
-OrbitalSim *constructOrbitalSim(float timeStep)
+OrbitalSim *constructOrbitalSim(double timeStep)
 {
-    // Your code goes here...
+    OrbitalSim * simulation = NULL;
+    
+    unsigned int i; //index
+    
+    simulation = (OrbitalSim*) malloc(sizeof(OrbitalSim));
+    simulation->bodies = (OrbitalBody*)malloc(SOLARSYSTEM_BODYNUM * sizeof(OrbitalBody));
+    
+    if(simulation->bodies == NULL) //malloc failed, return NULL
+    {
+        return NULL;
+    }
 
-
-
-    return NULL; // This should return your orbital sim
+    for(i = 0; i < SOLARSYSTEM_BODYNUM; i++)
+    {
+        
+    }
+    return simulation; 
 }
 
 /**
@@ -96,3 +116,20 @@ void updateOrbitalSim(OrbitalSim *sim)
 
 
 }
+
+
+
+
+static void translateBody(const EphemeridesBody * const _ephemerid_body, 
+                          OrbitalBody * const _orbital_body)
+{
+    _orbital_body->acceleration = (Vector3){.x = 0.0F, .y = 0.0F, .z = 0.0F};
+    _orbital_body->action = (void(*)(void))NULL;
+    _orbital_body->mass = _ephemerid_body->mass;
+    _orbital_body->position = _ephemerid_body->position; //both are Vector3
+    _orbital_body->radius = (double) _ephemerid_body->radius;
+    _orbital_body->velocity = _ephemerid_body->velocity; //both are Vector3
+
+
+    return;
+}   

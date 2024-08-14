@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/mginhson/Downloads/1. Warm Up - Starter Code"
+CMAKE_SOURCE_DIR = /home/mginhson/Desktop/EDA/EDA_Level1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/mginhson/Downloads/1. Warm Up - Starter Code/build"
+CMAKE_BINARY_DIR = /home/mginhson/Desktop/EDA/EDA_Level1/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/orbitalsim.dir/depend.make
@@ -72,44 +72,44 @@ include CMakeFiles/orbitalsim.dir/flags.make
 CMakeFiles/orbitalsim.dir/main.cpp.o: CMakeFiles/orbitalsim.dir/flags.make
 CMakeFiles/orbitalsim.dir/main.cpp.o: ../main.cpp
 CMakeFiles/orbitalsim.dir/main.cpp.o: CMakeFiles/orbitalsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/mginhson/Downloads/1. Warm Up - Starter Code/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/orbitalsim.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/orbitalsim.dir/main.cpp.o -MF CMakeFiles/orbitalsim.dir/main.cpp.o.d -o CMakeFiles/orbitalsim.dir/main.cpp.o -c "/home/mginhson/Downloads/1. Warm Up - Starter Code/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mginhson/Desktop/EDA/EDA_Level1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/orbitalsim.dir/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/orbitalsim.dir/main.cpp.o -MF CMakeFiles/orbitalsim.dir/main.cpp.o.d -o CMakeFiles/orbitalsim.dir/main.cpp.o -c /home/mginhson/Desktop/EDA/EDA_Level1/main.cpp
 
 CMakeFiles/orbitalsim.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/orbitalsim.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/mginhson/Downloads/1. Warm Up - Starter Code/main.cpp" > CMakeFiles/orbitalsim.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mginhson/Desktop/EDA/EDA_Level1/main.cpp > CMakeFiles/orbitalsim.dir/main.cpp.i
 
 CMakeFiles/orbitalsim.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/orbitalsim.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/mginhson/Downloads/1. Warm Up - Starter Code/main.cpp" -o CMakeFiles/orbitalsim.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mginhson/Desktop/EDA/EDA_Level1/main.cpp -o CMakeFiles/orbitalsim.dir/main.cpp.s
 
 CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.o: CMakeFiles/orbitalsim.dir/flags.make
 CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.o: ../OrbitalSim.cpp
 CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.o: CMakeFiles/orbitalsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/mginhson/Downloads/1. Warm Up - Starter Code/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.o -MF CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.o.d -o CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.o -c "/home/mginhson/Downloads/1. Warm Up - Starter Code/OrbitalSim.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mginhson/Desktop/EDA/EDA_Level1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.o -MF CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.o.d -o CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.o -c /home/mginhson/Desktop/EDA/EDA_Level1/OrbitalSim.cpp
 
 CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/mginhson/Downloads/1. Warm Up - Starter Code/OrbitalSim.cpp" > CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mginhson/Desktop/EDA/EDA_Level1/OrbitalSim.cpp > CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.i
 
 CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/mginhson/Downloads/1. Warm Up - Starter Code/OrbitalSim.cpp" -o CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mginhson/Desktop/EDA/EDA_Level1/OrbitalSim.cpp -o CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.s
 
 CMakeFiles/orbitalsim.dir/View.cpp.o: CMakeFiles/orbitalsim.dir/flags.make
 CMakeFiles/orbitalsim.dir/View.cpp.o: ../View.cpp
 CMakeFiles/orbitalsim.dir/View.cpp.o: CMakeFiles/orbitalsim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/mginhson/Downloads/1. Warm Up - Starter Code/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/orbitalsim.dir/View.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/orbitalsim.dir/View.cpp.o -MF CMakeFiles/orbitalsim.dir/View.cpp.o.d -o CMakeFiles/orbitalsim.dir/View.cpp.o -c "/home/mginhson/Downloads/1. Warm Up - Starter Code/View.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mginhson/Desktop/EDA/EDA_Level1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/orbitalsim.dir/View.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/orbitalsim.dir/View.cpp.o -MF CMakeFiles/orbitalsim.dir/View.cpp.o.d -o CMakeFiles/orbitalsim.dir/View.cpp.o -c /home/mginhson/Desktop/EDA/EDA_Level1/View.cpp
 
 CMakeFiles/orbitalsim.dir/View.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/orbitalsim.dir/View.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/mginhson/Downloads/1. Warm Up - Starter Code/View.cpp" > CMakeFiles/orbitalsim.dir/View.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mginhson/Desktop/EDA/EDA_Level1/View.cpp > CMakeFiles/orbitalsim.dir/View.cpp.i
 
 CMakeFiles/orbitalsim.dir/View.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/orbitalsim.dir/View.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/mginhson/Downloads/1. Warm Up - Starter Code/View.cpp" -o CMakeFiles/orbitalsim.dir/View.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mginhson/Desktop/EDA/EDA_Level1/View.cpp -o CMakeFiles/orbitalsim.dir/View.cpp.s
 
 # Object files for target orbitalsim
 orbitalsim_OBJECTS = \
@@ -126,7 +126,7 @@ orbitalsim: CMakeFiles/orbitalsim.dir/View.cpp.o
 orbitalsim: CMakeFiles/orbitalsim.dir/build.make
 orbitalsim: /home/mginhson/dev/vcpkg/installed/x64-linux/debug/lib/libraylib.a
 orbitalsim: CMakeFiles/orbitalsim.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/mginhson/Downloads/1. Warm Up - Starter Code/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable orbitalsim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mginhson/Desktop/EDA/EDA_Level1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable orbitalsim"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/orbitalsim.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -138,6 +138,6 @@ CMakeFiles/orbitalsim.dir/clean:
 .PHONY : CMakeFiles/orbitalsim.dir/clean
 
 CMakeFiles/orbitalsim.dir/depend:
-	cd "/home/mginhson/Downloads/1. Warm Up - Starter Code/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/mginhson/Downloads/1. Warm Up - Starter Code" "/home/mginhson/Downloads/1. Warm Up - Starter Code" "/home/mginhson/Downloads/1. Warm Up - Starter Code/build" "/home/mginhson/Downloads/1. Warm Up - Starter Code/build" "/home/mginhson/Downloads/1. Warm Up - Starter Code/build/CMakeFiles/orbitalsim.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /home/mginhson/Desktop/EDA/EDA_Level1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mginhson/Desktop/EDA/EDA_Level1 /home/mginhson/Desktop/EDA/EDA_Level1 /home/mginhson/Desktop/EDA/EDA_Level1/build /home/mginhson/Desktop/EDA/EDA_Level1/build /home/mginhson/Desktop/EDA/EDA_Level1/build/CMakeFiles/orbitalsim.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/orbitalsim.dir/depend
 

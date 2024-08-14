@@ -1,5 +1,5 @@
 CMakeFiles/orbitalsim.dir/View.cpp.o: \
- /home/mginhson/Downloads/1.\ Warm\ Up\ -\ Starter\ Code/View.cpp \
+ /home/mginhson/Desktop/EDA/EDA_Level1/View.cpp \
  /usr/include/stdc-predef.h /usr/include/time.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -26,7 +26,7 @@ CMakeFiles/orbitalsim.dir/View.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
- /home/mginhson/Downloads/1.\ Warm\ Up\ -\ Starter\ Code/View.h \
+ /home/mginhson/Desktop/EDA/EDA_Level1/View.h \
  /home/mginhson/dev/vcpkg/buildtrees/raylib/x64-linux-rel/raylib/include/raylib.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdarg.h \
- /home/mginhson/Downloads/1.\ Warm\ Up\ -\ Starter\ Code/OrbitalSim.h
+ /home/mginhson/Desktop/EDA/EDA_Level1/OrbitalSim.h
