@@ -23,7 +23,7 @@ struct OrbitalBody
     Vector3 acceleration; //{[m/s^2],[m/s^2],[m/s^2]}
     Vector3 velocity; //{[m/s],[m/s],[m/s]}
     Color color;    // raylib color
-
+    
     void (*action)(void);
 };
 
@@ -37,6 +37,7 @@ struct OrbitalSim
     OrbitalBody * bodies;
     double time_step;
     double time_elapsed;
+    uint32_t bodies_count;
 };
 
 OrbitalSim *constructOrbitalSim(double timeStep);
