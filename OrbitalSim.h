@@ -13,6 +13,7 @@
  * @brief 
  * Each body has 
  */
+
 struct OrbitalBody
 {
     
