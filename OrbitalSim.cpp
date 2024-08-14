@@ -90,7 +90,7 @@ OrbitalSim *constructOrbitalSim(double timeStep)
 
     for(i = 0; i < SOLARSYSTEM_BODYNUM; i++)
     {
-        
+        translateBody(&solarSystem[i],&simulation->bodies[i]);
     }
     return simulation; 
 }
@@ -101,7 +101,7 @@ OrbitalSim *constructOrbitalSim(double timeStep)
 void destroyOrbitalSim(OrbitalSim *sim)
 {
     // Your code goes here...
-
+    if ()
 
 }
 
