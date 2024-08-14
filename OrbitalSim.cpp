@@ -95,6 +95,7 @@ OrbitalSim *constructOrbitalSim(double timeStep)
     for(i = 0; i < SOLARSYSTEM_BODYNUM; i++)
     {
         translateBody(&solarSystem[i],&simulation->bodies[i]);
+        //printf("%lf %lf\n",solarSystem[i].radius,simulation->bodies[i].radius);
     }
     return simulation; 
 }
@@ -140,6 +141,6 @@ static void translateBody(const EphemeridesBody * const _ephemerid_body,
     _orbital_body->position = _ephemerid_body->position; //both are Vector3
     _orbital_body->radius = (double) _ephemerid_body->radius;
     _orbital_body->velocity = _ephemerid_body->velocity; //both are Vector3
-
+    _orbital_body->color = _ephemerid_body->color;
     return;
 }   
