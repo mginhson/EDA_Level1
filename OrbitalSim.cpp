@@ -83,7 +83,7 @@ OrbitalSim *constructOrbitalSim(double timeStep)
     
     unsigned int i; //index
     
-    simulation =  new(OrbitalSim);
+    simulation = (OrbitalSim*) malloc(sizeof(OrbitalSim));
     simulation->bodies_count = SOLARSYSTEM_BODYNUM;
     simulation->bodies = (OrbitalBody*) malloc(simulation->bodies_count * sizeof(OrbitalBody));
     
@@ -105,8 +105,8 @@ OrbitalSim *constructOrbitalSim(double timeStep)
 void destroyOrbitalSim(OrbitalSim *sim)
 {
     // Your code goes here...
-    if (sim != NULL)
-        delete sim;    
+    free(sim->bodies);
+    free(sim);
 
 }
 
