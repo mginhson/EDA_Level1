@@ -6,7 +6,7 @@
  */
 
 #include <time.h>
-
+#include <cstdio>
 #include "View.h"
 
 #define WINDOW_WIDTH 1280
@@ -88,7 +88,7 @@ bool isViewRendering(View *view)
 void renderView(View *view, OrbitalSim *sim)
 {
     UpdateCamera(&view->camera, CAMERA_FREE);
-
+    int i;
     BeginDrawing();
 
     ClearBackground(BLACK);
@@ -96,6 +96,15 @@ void renderView(View *view, OrbitalSim *sim)
 
     // Fill in your 3D drawing code here:
 
+        for (i=0; i < 10  ; i++)
+    {
+        //printf ("%lf",sim->bodies[i].radius);
+        // (Vector3Scale(sim->bodies[i].position, 1E-3F) , sim->bodies[i].color);
+        DrawSphere (Vector3Scale(sim->bodies[i].position, 1E-11) ,0.015 * logf(sim->bodies[i].radius), sim->bodies[i].color);
+        
+        //DrawSphere ((Vector3){0,0,0},10,RED);
+
+    }
 
 
     DrawGrid(10, 10.0f);
