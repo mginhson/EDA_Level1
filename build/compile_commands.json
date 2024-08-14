@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/mginhson/Downloads/1. Warm Up - Starter Code/build",
+  "command": "/usr/bin/c++  -I/home/mginhson/dev/vcpkg/buildtrees/raylib/x64-linux-rel/raylib/include -isystem /home/mginhson/dev/vcpkg/installed/x64-linux/include -g -I/home/mginhson/dev/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include -std=gnu++11 -o CMakeFiles/orbitalsim.dir/main.cpp.o -c \"/home/mginhson/Downloads/1. Warm Up - Starter Code/main.cpp\"",
+  "file": "/home/mginhson/Downloads/1. Warm Up - Starter Code/main.cpp"
+},
+{
+  "directory": "/home/mginhson/Downloads/1. Warm Up - Starter Code/build",
+  "command": "/usr/bin/c++  -I/home/mginhson/dev/vcpkg/buildtrees/raylib/x64-linux-rel/raylib/include -isystem /home/mginhson/dev/vcpkg/installed/x64-linux/include -g -I/home/mginhson/dev/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include -std=gnu++11 -o CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.o -c \"/home/mginhson/Downloads/1. Warm Up - Starter Code/OrbitalSim.cpp\"",
+  "file": "/home/mginhson/Downloads/1. Warm Up - Starter Code/OrbitalSim.cpp"
+},
+{
+  "directory": "/home/mginhson/Downloads/1. Warm Up - Starter Code/build",
+  "command": "/usr/bin/c++  -I/home/mginhson/dev/vcpkg/buildtrees/raylib/x64-linux-rel/raylib/include -isystem /home/mginhson/dev/vcpkg/installed/x64-linux/include -g -I/home/mginhson/dev/vcpkg/installed/x64-linux/debug/lib/pkgconfig/../../../include -std=gnu++11 -o CMakeFiles/orbitalsim.dir/View.cpp.o -c \"/home/mginhson/Downloads/1. Warm Up - Starter Code/View.cpp\"",
+  "file": "/home/mginhson/Downloads/1. Warm Up - Starter Code/View.cpp"
+}
+]
