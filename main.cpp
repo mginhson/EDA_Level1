@@ -25,7 +25,7 @@ int main(int argc, char **argv)
     {
         //updateOrbitalSim(sim);
 
-        renderView(view, NULL);
+        renderView(view, sim);
     }
 
     destroyView(view);
