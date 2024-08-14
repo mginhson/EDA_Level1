@@ -13,11 +13,14 @@
 #include <stdio.h>
 #include <math.h>
 
+
+
 #include "OrbitalSim.h"
 #include "ephemerides.h"
 
 #define GRAVITATIONAL_CONSTANT 6.6743E-11F
 #define ASTEROIDS_MEAN_RADIUS 4E11F
+//This should be known at compile time, to build the static matrix on updateSim. Change according to premade universe.
 
 
 static void translateBody(const EphemeridesBody * const _ephemerid_body, 
@@ -80,8 +83,9 @@ OrbitalSim *constructOrbitalSim(double timeStep)
     
     unsigned int i; //index
     
-    simulation = (OrbitalSim*) malloc(sizeof(OrbitalSim));
-    simulation->bodies = (OrbitalBody*)malloc(SOLARSYSTEM_BODYNUM * sizeof(OrbitalBody));
+    simulation =  new(OrbitalSim);
+    simulation->bodies_count = SOLARSYSTEM_BODYNUM;
+    simulation->bodies = (OrbitalBody*) malloc(simulation->bodies_count * sizeof(OrbitalBody));
     
     if(simulation->bodies == NULL) //malloc failed, return NULL
     {
@@ -101,7 +105,8 @@ OrbitalSim *constructOrbitalSim(double timeStep)
 void destroyOrbitalSim(OrbitalSim *sim)
 {
     // Your code goes here...
-    if ()
+    if (sim != NULL)
+        delete sim;    
 
 }
 
@@ -112,8 +117,14 @@ void destroyOrbitalSim(OrbitalSim *sim)
  */
 void updateOrbitalSim(OrbitalSim *sim)
 {
-    // Your code goes here...
-
+  
+    unsigned int index;
+    
+    for(index = 0; index < sim->bodies_count; index++)
+    {
+        
+    }
+    
 
 }
 
@@ -129,7 +140,6 @@ static void translateBody(const EphemeridesBody * const _ephemerid_body,
     _orbital_body->position = _ephemerid_body->position; //both are Vector3
     _orbital_body->radius = (double) _ephemerid_body->radius;
     _orbital_body->velocity = _ephemerid_body->velocity; //both are Vector3
-
 
     return;
 }   
