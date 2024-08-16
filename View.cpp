@@ -96,23 +96,25 @@ void renderView(View *view, OrbitalSim *sim)
 
     // Fill in your 3D drawing code here:
 
-        for (i=0; i < 10  ; i++)
+//Generates each body and a 3d point in the centre of each body so it's easier to see it from far away
+    for (i=0; i < sim->bodies_count  ; i++)
     {
-        //printf ("%lf",sim->bodies[i].radius);
-        // (Vector3Scale(sim->bodies[i].position, 1E-3F) , sim->bodies[i].color);
         DrawSphere (Vector3Scale(sim->bodies[i].position, 1E-11) ,0.015 * logf(sim->bodies[i].radius), sim->bodies[i].color);
-        
-        //DrawSphere ((Vector3){0,0,0},10,RED);
+        DrawPoint3D (Vector3Scale(sim->bodies[i].position, 1E-11) , sim->bodies[i].color);
 
     }
 
 
-    DrawGrid(10, 10.0f);
+    //DrawGrid(10, 10.0f);
     EndMode3D();
 
     // Fill in your 2D drawing code here:
 
-
-
+    //Shows FPS and Date on ISO format on the upper left corner.
+    
+    DrawFPS (0,0);
+    DrawText (getISODate(sim->time_elapsed),0,50,12,WHITE);
+    
     EndDrawing();
+
 }

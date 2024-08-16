@@ -58,4 +58,17 @@ CMakeFiles/orbitalsim.dir/main.cpp.o: \
  /usr/include/c++/11/bits/std_abs.h \
  /home/mginhson/Desktop/EDA/EDA_Level1/OrbitalSim.h \
  /home/mginhson/dev/vcpkg/buildtrees/raylib/x64-linux-rel/raylib/include/raylib.h \
- /home/mginhson/Desktop/EDA/EDA_Level1/View.h
+ /home/mginhson/Desktop/EDA/EDA_Level1/View.h \
+ /home/mginhson/dev/vcpkg/buildtrees/raylib/x64-linux-rel/raylib/include/raymath.h \
+ /usr/include/c++/11/math.h /usr/include/c++/11/cmath \
+ /usr/include/c++/11/bits/cpp_type_traits.h \
+ /usr/include/c++/11/ext/type_traits.h /usr/include/math.h \
+ /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+ /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+ /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+ /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+ /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+ /usr/include/x86_64-linux-gnu/bits/iscanonical.h

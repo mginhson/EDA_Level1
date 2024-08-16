@@ -1,7 +1,7 @@
 /**
  * @brief Ephemerides for orbital simulation
  * @author Marc S. Ressl
- * 
+ * @modifiers Matteo Ginhson, Nicanor Otamendi
  * @copyright Copyright (c) 2022-2023
  */
 
