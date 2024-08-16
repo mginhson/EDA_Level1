@@ -176,7 +176,7 @@ void updateOrbitalSimOptimized(OrbitalSim *sim)
     for(current = 0; current < sim->bodies_count; current++)
     {
         
-        total_force = (Vector3){0.0, 0.0, 0.0};
+        
         for(walker = current+1; walker < sim->bodies_count; walker++)
         {
             
@@ -185,14 +185,16 @@ void updateOrbitalSimOptimized(OrbitalSim *sim)
            
             vec_diff_length_sqr = (double) Vector3LengthSqr(vec_diff);
 
-            coefficient = (double) (-GRAVITATIONAL_CONSTANT) * 
-                                    (sim->bodies[current].mass * sim->bodies[walker].mass) /
+            coefficient = (double) (-GRAVITATIONAL_CONSTANT * 
+                                    sim->bodies[walker].mass) /
                                     vec_diff_length_sqr;
             single_force = Vector3Scale(vec_diff_normalized,coefficient);
             sim->bodies[current].applied_force = Vector3Add(single_force,sim->bodies[current].applied_force);
 
-            
-            sim->bodies[walker].applied_force = Vector3Add(Vector3Invert(single_force), sim->bodies[walker].applied_force);
+            single_force.x *= -1.0F;
+            single_force.z *= -1.0F;
+            single_force.y *= -1.0F;
+            sim->bodies[walker].applied_force = Vector3Add(Vector3Scale(single_force,1/sim->bodies[current].mass), sim->bodies[walker].applied_force);
             
         }
         /**
@@ -200,14 +202,8 @@ void updateOrbitalSimOptimized(OrbitalSim *sim)
              * of the force B applies to A, we apply these results to both the
              * walker and current vector
             */
-            
-             
-    }
-
-    for(current = 0; current < sim->bodies_count; ++current)
-    {
         //Calculates body accel based on force
-        sim->bodies[current].acceleration = Vector3Scale(sim->bodies[current].applied_force,(double)1/sim->bodies[current].mass);
+        sim->bodies[current].acceleration = sim->bodies[current].applied_force;
         
         target_delta_velocity = Vector3Scale(sim->bodies[current].acceleration, sim->time_step);
         sim->bodies[current].velocity = Vector3Add(sim->bodies[current].velocity,target_delta_velocity);
@@ -216,8 +212,11 @@ void updateOrbitalSimOptimized(OrbitalSim *sim)
         sim->bodies[current].position = Vector3Add(sim->bodies[current].position, target_delta_position);
 
         //Clears the .applied_force field for the next updateSimulation
-        sim->bodies[current].applied_force = (Vector3){ .x = 0.0F, .y = 0.0F, .z = 0.0F};
+        sim->bodies[current].applied_force = (Vector3){ .x = 0.0F, .y = 0.0F, .z = 0.0F};    
+             
     }
+
+    
     sim->time_elapsed += sim->time_step;    
 
 }
