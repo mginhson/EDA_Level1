@@ -24,7 +24,7 @@ struct OrbitalBody
     Vector3 position;       //{[m],[m],[m]}, distance from origin on each axis
     Vector3 acceleration;   //{[m/s^2],[m/s^2],[m/s^2]}
     Vector3 velocity;       //{[m/s],[m/s],[m/s]}
-    Vector3 applied_force   //[N]
+    Vector3 applied_force;  //[N]
     Color color;            //raylib color
 };
 

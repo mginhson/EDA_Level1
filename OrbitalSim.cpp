@@ -177,10 +177,9 @@ void updateOrbitalSimOptimized(OrbitalSim *sim)
     {
         
         total_force = (Vector3){0.0, 0.0, 0.0};
-        for(walker = 0; walker < sim->bodies_count; walker++)
+        for(walker = current+1; walker < sim->bodies_count; walker++)
         {
-            if(walker == current)
-                continue;
+            
             vec_diff = Vector3Subtract(sim->bodies[current].position,sim->bodies[walker].position);
             vec_diff_normalized = Vector3Normalize(vec_diff);
            
@@ -190,23 +189,25 @@ void updateOrbitalSimOptimized(OrbitalSim *sim)
                                     (sim->bodies[current].mass * sim->bodies[walker].mass) /
                                     vec_diff_length_sqr;
             single_force = Vector3Scale(vec_diff_normalized,coefficient);
-            total_force = Vector3Add(single_force,total_force);
+            sim->bodies[current].applied_force = Vector3Add(single_force,sim->bodies[current].applied_force);
 
-            /**
+            
+            sim->bodies[walker].applied_force = Vector3Add(Vector3Invert(single_force), sim->bodies[walker].applied_force);
+            
+        }
+        /**
              * Since the force body A applies to body B is the opposite
              * of the force B applies to A, we apply these results to both the
              * walker and current vector
             */
-            sim->bodies[current].applied_force += total_force;
-        }
-
+            
              
     }
 
     for(current = 0; current < sim->bodies_count; ++current)
     {
         //Calculates body accel based on force
-        sim->bodies[current].acceleration = Vector3Scale(total_force,(double)1/sim->bodies[current].mass);
+        sim->bodies[current].acceleration = Vector3Scale(sim->bodies[current].applied_force,(double)1/sim->bodies[current].mass);
         
         target_delta_velocity = Vector3Scale(sim->bodies[current].acceleration, sim->time_step);
         sim->bodies[current].velocity = Vector3Add(sim->bodies[current].velocity,target_delta_velocity);
