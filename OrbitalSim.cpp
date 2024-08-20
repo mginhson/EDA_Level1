@@ -36,6 +36,8 @@ static void translateBody(const EphemeridesBody * const _ephemerid_body,
  */
 float getRandomFloat(float min, float max)
 {
+    
+    
     return min + (max - min) * rand() / (float)RAND_MAX;
 }
 

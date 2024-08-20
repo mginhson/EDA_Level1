@@ -9,6 +9,7 @@
 #define ORBITALSIM_H
 
 #include "raylib.h"
+#include "raymath.h"
 
 #define ASTEROIDS_COUNT 500
 

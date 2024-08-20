@@ -94,13 +94,16 @@ void renderView(View *view, OrbitalSim *sim)
     ClearBackground(BLACK);
     BeginMode3D(view->camera);
 
-    // Fill in your 3D drawing code here:
+    
 
-//Generates each body and a 3d point in the centre of each body so it's easier to see it from far away
+    Vector3 temp;
     for (i=0; i < sim->bodies_count  ; i++)
     {
-        DrawSphere (Vector3Scale(sim->bodies[i].position, 1E-11) ,0.015 * logf(sim->bodies[i].radius), sim->bodies[i].color);
-        DrawPoint3D (Vector3Scale(sim->bodies[i].position, 1E-11) , sim->bodies[i].color);
+        
+        if(Vector3Distance(view->camera.position,Vector3Scale(sim->bodies[i].position,1E-11)) < 10.0)
+            DrawSphere (Vector3Scale(sim->bodies[i].position, 1E-11) ,0.015 * logf(sim->bodies[i].radius), sim->bodies[i].color);
+        else
+            DrawPoint3D (Vector3Scale(sim->bodies[i].position, 1E-11) , sim->bodies[i].color);
 
     }
 
@@ -114,7 +117,7 @@ void renderView(View *view, OrbitalSim *sim)
     
     DrawFPS (0,0);
     DrawText (getISODate(sim->time_elapsed),0,50,12,WHITE);
-    
+
     EndDrawing();
 
 }
