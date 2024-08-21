@@ -19,7 +19,12 @@
 #include "ephemerides.h"
 
 #define GRAVITATIONAL_CONSTANT 6.6743E-11F
-#define ASTEROIDS_MEAN_RADIUS 4E11F
+
+/**
+ * This value was originally 2E11F, was changed to have greater sparsity between asteroids,
+ * all of them would be cluttered and close to the Sun otherwise.
+*/
+#define ASTEROIDS_MEAN_RADIUS 2E12F 
 
 
 
@@ -89,20 +94,30 @@ OrbitalSim *constructOrbitalSim(double timeStep)
     if(simulation == NULL) //malloc failed, return NULL
         return NULL;
     
+    //Loads the count of how many bodies are there on the simulation
     simulation->bodies_count = SOLARSYSTEM_BODYNUM + ASTEROIDS_COUNT;
     
+    //The first SOLARSYSTEM_BODYNUM bodies are the planets, the ones after this mark are asteroids
+    simulation->planets_range = SOLARSYSTEM_BODYNUM;
+
+
     simulation->bodies = (OrbitalBody*) malloc(simulation->bodies_count * sizeof(OrbitalBody));
-    if(simulation->bodies == NULL)
+    if(simulation->bodies == NULL) //malloc failed, return NULL
         return NULL;
     
 
     for(i = 0; i < SOLARSYSTEM_BODYNUM; i++)
     {
         translateBody(&solarSystem[i],&simulation->bodies[i]);
-        //printf("%lf %lf\n",solarSystem[i].radius,simulation->bodies[i].radius);
     }
-    for(i = SOLARSYSTEM_BODYNUM; i < simulation->bodies_count; i++)
+
+    for(i = simulation->planets_range; i < simulation->bodies_count; i++)
         configureAsteroid(&simulation->bodies[i],simulation->bodies[0].mass);
+
+    for(i = 0; i < simulation->bodies_count; ++i)
+    {
+        simulation->bodies[i].applied_force = (Vector3){0.0f, 0.0f, 0.0f};
+    }
     simulation->time_step = timeStep;
     return simulation; 
 }
@@ -118,9 +133,10 @@ void destroyOrbitalSim(OrbitalSim *sim)
 }
 
 /**
- * @brief Simulates a timestep
+ * @brief updates a simulation instance
  *
- * @param sim The orbital simulation
+ * @param sim: a pointer to the simulation instance
+ * @return nothing
  */
 void updateOrbitalSim(OrbitalSim *sim)
 {
@@ -165,19 +181,26 @@ void updateOrbitalSim(OrbitalSim *sim)
 }
 
 
+
+/**
+ * @brief updates a simulation instance
+ *
+ * @param sim: a pointer to the simulation instance
+ * @return nothing
+ */
 void updateOrbitalSimOptimized(OrbitalSim *sim)
 {
   
+     
     unsigned int current,walker;
-    Vector3 total_force,single_force;
+    Vector3 single_force,inverted_single_force;
     Vector3 vec_diff,vec_diff_normalized;
     Vector3 target_delta_velocity,target_delta_position;
     double vec_diff_length_sqr, coefficient;
 
-    //This loop expects ALL of sim->bodies[].applied_force to be zero
-    for(current = 0; current < sim->bodies_count; current++)
+    
+   for(current = 0; current < sim->bodies_count; current++)
     {
-        
         
         for(walker = current+1; walker < sim->bodies_count; walker++)
         {
@@ -187,25 +210,20 @@ void updateOrbitalSimOptimized(OrbitalSim *sim)
            
             vec_diff_length_sqr = (double) Vector3LengthSqr(vec_diff);
 
-            coefficient = (double) (-GRAVITATIONAL_CONSTANT * 
-                                    sim->bodies[walker].mass) /
+            coefficient = (double) (-GRAVITATIONAL_CONSTANT) * 
+                                    (sim->bodies[current].mass * sim->bodies[walker].mass) /
                                     vec_diff_length_sqr;
             single_force = Vector3Scale(vec_diff_normalized,coefficient);
+            inverted_single_force = single_force;
+            inverted_single_force.x *= -1.0f;
+            inverted_single_force.y *= -1.0f;
+            inverted_single_force.z *= -1.0f;
             sim->bodies[current].applied_force = Vector3Add(single_force,sim->bodies[current].applied_force);
-
-            single_force.x *= -1.0F;
-            single_force.z *= -1.0F;
-            single_force.y *= -1.0F;
-            sim->bodies[walker].applied_force = Vector3Add(Vector3Scale(single_force,1/sim->bodies[current].mass), sim->bodies[walker].applied_force);
-            
+            sim->bodies[walker].applied_force = Vector3Add(inverted_single_force,sim->bodies[walker].applied_force);
         }
-        /**
-             * Since the force body A applies to body B is the opposite
-             * of the force B applies to A, we apply these results to both the
-             * walker and current vector
-            */
+
         //Calculates body accel based on force
-        sim->bodies[current].acceleration = sim->bodies[current].applied_force;
+        sim->bodies[current].acceleration = Vector3Scale(sim->bodies[current].applied_force,(double)1/sim->bodies[current].mass);
         
         target_delta_velocity = Vector3Scale(sim->bodies[current].acceleration, sim->time_step);
         sim->bodies[current].velocity = Vector3Add(sim->bodies[current].velocity,target_delta_velocity);
@@ -213,18 +231,18 @@ void updateOrbitalSimOptimized(OrbitalSim *sim)
         target_delta_position = Vector3Scale(sim->bodies[current].velocity,sim->time_step);
         sim->bodies[current].position = Vector3Add(sim->bodies[current].position, target_delta_position);
 
-        //Clears the .applied_force field for the next updateSimulation
-        sim->bodies[current].applied_force = (Vector3){ .x = 0.0F, .y = 0.0F, .z = 0.0F};    
-             
+        //Resets the applied force since the next calculation loop expects it like that
+        sim->bodies[current].applied_force = (Vector3){0.0, 0.0, 0.0};      
     }
-
-    
     sim->time_elapsed += sim->time_step;    
 
 }
 
-/**
- * @brief
+/** 
+ * @brief translates the members of type EphemeridesBody to type OrbitalBody
+ * @param _ephemerid_body a ptr to an EphemeridBody (source)
+ * @param _orbital_body a ptr to an OrbitalBody (destination)
+ * @return nothing
  */
 static void translateBody(const EphemeridesBody * const _ephemerid_body, 
                           OrbitalBody * const _orbital_body)
@@ -235,5 +253,6 @@ static void translateBody(const EphemeridesBody * const _ephemerid_body,
     _orbital_body->radius = (double) _ephemerid_body->radius;
     _orbital_body->velocity = _ephemerid_body->velocity; //both are Vector3
     _orbital_body->color = _ephemerid_body->color;
+    _orbital_body->one_over_mass = 1/_orbital_body->mass;
     return;
 }   

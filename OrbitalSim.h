@@ -11,7 +11,7 @@
 #include "raylib.h"
 #include "raymath.h"
 
-#define ASTEROIDS_COUNT 500
+#define ASTEROIDS_COUNT 10
 
 /**
  * @brief OrbitalBody definition
@@ -20,13 +20,14 @@
 struct OrbitalBody
 {
     
-    double mass;            //[kg]
-    double radius;          //[m]
-    Vector3 position;       //{[m],[m],[m]}, distance from origin on each axis
-    Vector3 acceleration;   //{[m/s^2],[m/s^2],[m/s^2]}
-    Vector3 velocity;       //{[m/s],[m/s],[m/s]}
-    Vector3 applied_force;  //[N]
-    Color color;            //raylib color
+    double mass;            // [kg]
+    double one_over_mass;   // 1/[kg]
+    double radius;          // [m]
+    Vector3 position;       // {[m],[m],[m]}, distance from origin on each axis
+    Vector3 acceleration;   // {[m/s^2],[m/s^2],[m/s^2]}
+    Vector3 velocity;       // {[m/s],[m/s],[m/s]}
+    Vector3 applied_force;  // [N]
+    Color color;            // raylib color
 };
 
 /**
@@ -38,9 +39,11 @@ struct OrbitalBody
 struct OrbitalSim
 {
     OrbitalBody * bodies;
-    unsigned int bodies_count;  
+    unsigned int bodies_count;
+    unsigned int planets_range;  
     double time_step;           //[s]
     double time_elapsed;        //[s], defining 0 seconds as the start of the simulation   
+
 };
 
 OrbitalSim *constructOrbitalSim(double timeStep);

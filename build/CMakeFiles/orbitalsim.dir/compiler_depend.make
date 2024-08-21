@@ -80,8 +80,8 @@ CMakeFiles/orbitalsim.dir/OrbitalSim.cpp.o: ../OrbitalSim.cpp \
   /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
   ../OrbitalSim.h \
   /home/mginhson/dev/vcpkg/buildtrees/raylib/x64-linux-rel/raylib/include/raylib.h \
-  ../ephemerides.h \
-  /home/mginhson/dev/vcpkg/buildtrees/raylib/x64-linux-rel/raylib/include/raymath.h
+  /home/mginhson/dev/vcpkg/buildtrees/raylib/x64-linux-rel/raylib/include/raymath.h \
+  ../ephemerides.h
 
 CMakeFiles/orbitalsim.dir/View.cpp.o: ../View.cpp \
   /usr/include/stdc-predef.h \
@@ -234,7 +234,6 @@ CMakeFiles/orbitalsim.dir/main.cpp.o: ../main.cpp \
   /usr/include/c++/11/bits/std_abs.h \
   ../OrbitalSim.h \
   /home/mginhson/dev/vcpkg/buildtrees/raylib/x64-linux-rel/raylib/include/raylib.h \
-  ../View.h \
   /home/mginhson/dev/vcpkg/buildtrees/raylib/x64-linux-rel/raylib/include/raymath.h \
   /usr/include/c++/11/math.h \
   /usr/include/c++/11/cmath \
@@ -249,7 +248,8 @@ CMakeFiles/orbitalsim.dir/main.cpp.o: ../main.cpp \
   /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
   /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
   /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
-  /usr/include/x86_64-linux-gnu/bits/iscanonical.h
+  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+  ../View.h
 
 
 /usr/include/c++/11/cstdio:

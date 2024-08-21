@@ -9,6 +9,7 @@
 #include <cstdio>
 #include "View.h"
 
+
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
 
@@ -97,10 +98,20 @@ void renderView(View *view, OrbitalSim *sim)
     
 
     Vector3 temp;
-    for (i=0; i < sim->bodies_count  ; i++)
+    double dist;
+
+    for (i=0; i < sim->planets_range  ; i++)
     {
-        
-        if(Vector3Distance(view->camera.position,Vector3Scale(sim->bodies[i].position,1E-11)) < 10.0)
+        DrawSphere (Vector3Scale(sim->bodies[i].position, 1E-11) ,
+                    0.015 * logf(sim->bodies[i].radius), 
+                    sim->bodies[i].color);
+    }
+
+    for (i=10; i < sim->bodies_count  ; i++)
+    {
+        dist = Vector3Distance(view->camera.position,Vector3Scale(sim->bodies[i].position,1E-11));
+         
+        if(dist < 10.0)
             DrawSphere (Vector3Scale(sim->bodies[i].position, 1E-11) ,0.015 * logf(sim->bodies[i].radius), sim->bodies[i].color);
         else
             DrawPoint3D (Vector3Scale(sim->bodies[i].position, 1E-11) , sim->bodies[i].color);
@@ -108,10 +119,10 @@ void renderView(View *view, OrbitalSim *sim)
     }
 
 
-    //DrawGrid(10, 10.0f);
+    
     EndMode3D();
 
-    // Fill in your 2D drawing code here:
+
 
     //Shows FPS and Date on ISO format on the upper left corner.
     
