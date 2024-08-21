@@ -18,7 +18,9 @@ int main(int argc, char **argv)
     double timeMultiplier = 100 * SECONDS_PER_DAY; // Simulation speed: 100 days per simulation second
     double timeStep = timeMultiplier / fps;
 
-    OrbitalSim *sim = constructOrbitalSim(timeStep);
+    // Change this line to contruct either AlfaCentauri or Solarsist     
+    
+    OrbitalSim *sim =constructOrbitalSim_BONUS(timeStep);
     View *view = constructView(fps);
 
     while (isViewRendering(view))

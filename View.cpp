@@ -111,7 +111,7 @@ void renderView(View *view, OrbitalSim *sim)
     {
         dist = Vector3Distance(view->camera.position,Vector3Scale(sim->bodies[i].position,1E-11));
          
-        if(dist < 10.0)
+        if(dist < 5.0)
             DrawSphere (Vector3Scale(sim->bodies[i].position, 1E-11) ,0.015 * logf(sim->bodies[i].radius), sim->bodies[i].color);
         else
             DrawPoint3D (Vector3Scale(sim->bodies[i].position, 1E-11) , sim->bodies[i].color);
@@ -127,7 +127,7 @@ void renderView(View *view, OrbitalSim *sim)
     //Shows FPS and Date on ISO format on the upper left corner.
     
     DrawFPS (0,0);
-    DrawText (getISODate(sim->time_elapsed),0,50,12,WHITE);
+    DrawText (getISODate(sim->time_elapsed),0,40,22,WHITE);
 
     EndDrawing();
 

@@ -11,7 +11,7 @@
 #include "raylib.h"
 #include "raymath.h"
 
-#define ASTEROIDS_COUNT 10
+#define ASTEROIDS_COUNT 1000
 
 /**
  * @brief OrbitalBody definition
@@ -47,6 +47,7 @@ struct OrbitalSim
 };
 
 OrbitalSim *constructOrbitalSim(double timeStep);
+OrbitalSim *constructOrbitalSim_BONUS(double timeStep);
 void destroyOrbitalSim(OrbitalSim *sim);
 void updateOrbitalSim(OrbitalSim *sim);
 void updateOrbitalSimOptimized(OrbitalSim *sim);

@@ -24,7 +24,7 @@
  * This value was originally 2E11F, was changed to have greater sparsity between asteroids,
  * all of them would be cluttered and close to the Sun otherwise.
 */
-#define ASTEROIDS_MEAN_RADIUS 2E12F 
+#define ASTEROIDS_MEAN_RADIUS 9E11F 
 
 
 
@@ -122,6 +122,45 @@ OrbitalSim *constructOrbitalSim(double timeStep)
     return simulation; 
 }
 
+OrbitalSim *constructOrbitalSim_BONUS(double timeStep)
+{
+    OrbitalSim * simulation = NULL;
+    
+    unsigned int i; //index
+    
+    simulation = (OrbitalSim*) malloc(sizeof(OrbitalSim));
+    if(simulation == NULL) //malloc failed, return NULL
+        return NULL;
+    
+    //Loads the count of how many bodies are there on the simulation
+    simulation->bodies_count = ALPHACENTAURISYSTEM_BODYNUM + ASTEROIDS_COUNT;
+    
+    //The first SOLARSYSTEM_BODYNUM bodies are the planets, the ones after this mark are asteroids
+    simulation->planets_range = ALPHACENTAURISYSTEM_BODYNUM;
+
+
+    simulation->bodies = (OrbitalBody*) malloc(simulation->bodies_count * sizeof(OrbitalBody));
+    if(simulation->bodies == NULL) //malloc failed, return NULL
+        return NULL;
+    
+
+    for(i = 0; i < simulation->planets_range; i++)
+    {
+        translateBody(&alphaCentauriSystem[i],&simulation->bodies[i]);
+    }
+
+    for(i = simulation->planets_range; i < simulation->bodies_count; i++)
+        configureAsteroid(&simulation->bodies[i],simulation->bodies[0].mass);
+
+    for(i = 0; i < simulation->bodies_count; ++i)
+    {
+        simulation->bodies[i].applied_force = (Vector3){0.0f, 0.0f, 0.0f};
+    }
+    simulation->time_step = timeStep;
+    return simulation; 
+}
+
+
 /**
  * @brief Destroys an orbital simulation
  */
@@ -179,6 +218,7 @@ void updateOrbitalSim(OrbitalSim *sim)
     sim->time_elapsed += sim->time_step;    
 
 }
+
 
 
 
