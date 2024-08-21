@@ -20,13 +20,13 @@ int main(int argc, char **argv)
 
     // Change this line to contruct either AlfaCentauri or Solarsist     
     
-    OrbitalSim *sim =constructOrbitalSim_BONUS(timeStep);
+    OrbitalSim *sim =constructOrbitalSim(timeStep);
     View *view = constructView(fps);
 
     while (isViewRendering(view))
     {
         for (int i = 0; i < 1; i++)
-            updateOrbitalSimOptimized(sim);
+            updateOrbitalSim(sim);
 
         renderView(view, sim);
     }

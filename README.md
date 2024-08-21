@@ -21,7 +21,7 @@ Nicanor Otamendi: [Realizo la mayor parte del codigo visual y la creacion de ast
 [Al buscar el mayor realismo posible, se calcula la interacción de todos los cuerpos contra todos, teniendo en total n elementos, siendo n = SOLARSYSTEM_BODYNUM + ASTEROIDS_COUNT. Debido a esto, la simulación tiene:
     UpdateOrbitalSim            -> O(n^2) : loop externo de n repeticiones, loop interno de n repeticiones
     
-    UpdateOrbitalSimOptimized   -> O(n^2 - n*(n+1)/2) : loop externo [k] de n repeticiones, loop interno de n-k repeticiones.
+    UpdateOrbitalSimOptimized   -> O(n^2) : loop externo [k] de n repeticiones, loop interno de n-k repeticiones.
 
     renderView -> O(n) :simplemente itera por todos los cuerpos y según cierto criterio los renderiza.
 ]

@@ -95,10 +95,10 @@ OrbitalSim *constructOrbitalSim(double timeStep)
         return NULL;
     
     //Loads the count of how many bodies are there on the simulation
-    simulation->bodies_count = ALPHACENTAURISYSTEM_BODYNUM + ASTEROIDS_COUNT;
+    simulation->bodies_count = SOLARSYSTEM_BODYNUM + ASTEROIDS_COUNT;
     
     //The first SOLARSYSTEM_BODYNUM bodies are the planets, the ones after this mark are asteroids
-    simulation->planets_range = ALPHACENTAURISYSTEM_BODYNUM;
+    simulation->planets_range = SOLARSYSTEM_BODYNUM;
 
 
     simulation->bodies = (OrbitalBody*) malloc(simulation->bodies_count * sizeof(OrbitalBody));
@@ -108,7 +108,7 @@ OrbitalSim *constructOrbitalSim(double timeStep)
 
     for(i = 0; i < simulation->planets_range; i++)
     {
-        translateBody(&alphaCentauriSystem[i],&simulation->bodies[i]);
+        translateBody(&solarSystem[i],&simulation->bodies[i]);
     }
 
     for(i = simulation->planets_range; i < simulation->bodies_count; i++)
@@ -122,6 +122,13 @@ OrbitalSim *constructOrbitalSim(double timeStep)
     return simulation; 
 }
 
+/**
+ * @brief Constructs an orbital simulation
+ *
+ * @param timeStep: floating point value, ideally should be a multiple of the FPS,
+ *                  will still work fine otherwise.
+ * @return The constructed orbital simulation. Returns NULL on error.
+ */
 OrbitalSim *constructOrbitalSim_BONUS(double timeStep)
 {
     OrbitalSim * simulation = NULL;
@@ -171,6 +178,11 @@ void destroyOrbitalSim(OrbitalSim *sim)
     free(sim);
 }
 
+
+
+
+
+
 /**
  * @brief updates a simulation instance
  *
@@ -180,57 +192,6 @@ void destroyOrbitalSim(OrbitalSim *sim)
 void updateOrbitalSim(OrbitalSim *sim)
 {
   
-    unsigned int current,walker;
-    Vector3 total_force,single_force;
-    Vector3 vec_diff,vec_diff_normalized;
-    Vector3 target_delta_velocity,target_delta_position;
-    double vec_diff_length_sqr, coefficient;
-
-    
-   for(current = 0; current < sim->bodies_count; current++)
-    {
-        total_force = (Vector3){0.0, 0.0, 0.0};
-        for(walker = 0; walker < sim->bodies_count; walker++)
-        {
-            if(walker == current)
-                continue;
-            vec_diff = Vector3Subtract(sim->bodies[current].position,sim->bodies[walker].position);
-            vec_diff_normalized = Vector3Normalize(vec_diff);
-           
-            vec_diff_length_sqr = (double) Vector3LengthSqr(vec_diff);
-
-            coefficient = (double) (-GRAVITATIONAL_CONSTANT) * 
-                                    (sim->bodies[current].mass * sim->bodies[walker].mass) /
-                                    vec_diff_length_sqr;
-            single_force = Vector3Scale(vec_diff_normalized,coefficient);
-            total_force = Vector3Add(single_force,total_force);
-        }
-
-        //Calculates body accel based on force
-        sim->bodies[current].acceleration = Vector3Scale(total_force,(double)1/sim->bodies[current].mass);
-        
-        target_delta_velocity = Vector3Scale(sim->bodies[current].acceleration, sim->time_step);
-        sim->bodies[current].velocity = Vector3Add(sim->bodies[current].velocity,target_delta_velocity);
-        
-        target_delta_position = Vector3Scale(sim->bodies[current].velocity,sim->time_step);
-        sim->bodies[current].position = Vector3Add(sim->bodies[current].position, target_delta_position);     
-    }
-    sim->time_elapsed += sim->time_step;    
-
-}
-
-
-
-
-/**
- * @brief updates a simulation instance
- *
- * @param sim: a pointer to the simulation instance
- * @return nothing
- */
-void updateOrbitalSimOptimized(OrbitalSim *sim)
-{
-  
      
     unsigned int current,walker;
     Vector3 single_force,inverted_single_force;
@@ -238,12 +199,19 @@ void updateOrbitalSimOptimized(OrbitalSim *sim)
     Vector3 target_delta_velocity,target_delta_position;
     double vec_diff_length_sqr, coefficient;
 
-    
-   for(current = 0; current < sim->bodies_count; current++)
-    {
-        
-        for(walker = current+1; walker < sim->bodies_count; walker++)
+    /**
+     * Calculates the interaction between every body and all the planets, which are the most significant bodies.
+     * Since an asteroid's mass is much smaller than of the planets, the effect on other bodies' orbit is insignificant.
+     * So, the outer loop iterates through all the bodies, and the inner one calculates the interaction between the planets
+     * and itself.
+     */
+    for(current = 0; current < sim->bodies_count; current++)
+    {    
+        sim->bodies[current].applied_force = (Vector3){0.0, 0.0, 0.0};
+        for(walker = 0; walker < sim->planets_range; walker++)
         {
+            if (current == walker)
+                continue;
             
             vec_diff = Vector3Subtract(sim->bodies[current].position,sim->bodies[walker].position);
             vec_diff_normalized = Vector3Normalize(vec_diff);
@@ -253,16 +221,13 @@ void updateOrbitalSimOptimized(OrbitalSim *sim)
             coefficient = (double) (-GRAVITATIONAL_CONSTANT) * 
                                     (sim->bodies[current].mass * sim->bodies[walker].mass) /
                                     vec_diff_length_sqr;
+
             single_force = Vector3Scale(vec_diff_normalized,coefficient);
-            inverted_single_force = single_force;
-            inverted_single_force.x *= -1.0f;
-            inverted_single_force.y *= -1.0f;
-            inverted_single_force.z *= -1.0f;
+            
             sim->bodies[current].applied_force = Vector3Add(single_force,sim->bodies[current].applied_force);
-            sim->bodies[walker].applied_force = Vector3Add(inverted_single_force,sim->bodies[walker].applied_force);
         }
 
-        //Calculates body accel based on force
+        //Calculates body acceleration based on force
         sim->bodies[current].acceleration = Vector3Scale(sim->bodies[current].applied_force,(double)1/sim->bodies[current].mass);
         
         target_delta_velocity = Vector3Scale(sim->bodies[current].acceleration, sim->time_step);
@@ -274,8 +239,8 @@ void updateOrbitalSimOptimized(OrbitalSim *sim)
         //Resets the applied force since the next calculation loop expects it like that
         sim->bodies[current].applied_force = (Vector3){0.0, 0.0, 0.0};      
     }
-    sim->time_elapsed += sim->time_step;    
 
+    sim->time_elapsed += sim->time_step;    
 }
 
 /** 

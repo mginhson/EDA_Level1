@@ -50,6 +50,6 @@ OrbitalSim *constructOrbitalSim(double timeStep);
 OrbitalSim *constructOrbitalSim_BONUS(double timeStep);
 void destroyOrbitalSim(OrbitalSim *sim);
 void updateOrbitalSim(OrbitalSim *sim);
-void updateOrbitalSimOptimized(OrbitalSim *sim);
+
 
 #endif

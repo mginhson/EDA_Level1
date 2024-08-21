@@ -119,7 +119,7 @@ void renderView(View *view, OrbitalSim *sim)
     }
 
 
-    
+    DrawGrid(10,10.0f);
     EndMode3D();
 
 
@@ -129,6 +129,7 @@ void renderView(View *view, OrbitalSim *sim)
     DrawFPS (0,0);
     DrawText (getISODate(sim->time_elapsed),0,40,22,WHITE);
 
+    
     EndDrawing();
 
 }
