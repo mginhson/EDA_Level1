@@ -14,7 +14,7 @@ Nicanor Otamendi: [Realizo la mayor parte del codigo visual y la creacion de ast
 
 ## Verificación del tipo de datos float
 
-[Luego de evaluar la precision que brindaba este tipo de datos y los recursos de las computadoras, consideramos mejor trabajar con tipo de dato double . De esta forma, aumenta la precision de la simulacion reduciendo el impacto de los errores de manera significativa cuando pasa mucho tiempo dentro de la simulacion, sumado al hecho de que nos sobran ampliamente los recursos para hacer este cambio.]
+[Luego de evaluar la precision que brindaba este tipo de datos y los recursos de las computadoras, consideramos mejor trabajar con tipo de dato double . De esta forma, aumenta la precision de la simulacion reduciendo el impacto de los errores de manera significativa cuando pasa mucho tiempo dentro de la simulacion, sumado al hecho de que nos sobran ampliamente los recursos para hacer este cambio. ]
 
 ## Complejidad computacional con asteroides
 
@@ -24,6 +24,10 @@ Nicanor Otamendi: [Realizo la mayor parte del codigo visual y la creacion de ast
     UpdateOrbitalSimOptimized   -> O(n^2 - n*(n+1)/2) : loop externo [k] de n repeticiones, loop interno de n-k repeticiones.
 
     renderView -> O(n) :simplemente itera por todos los cuerpos y según cierto criterio los renderiza.
+
+    Si en algun momento se requiriece de una mayor velocidad, se podria dejar de calcular la interaccion entre los asteroides. Esto agilizaria muchisimo el calculo y aumentaria la cantidad de fps de la simulacion significativamente, es decir, el algoritmo seria de aproximadamente O(n).
+
+    De todos modos, aprovechando los recursos que ofrecen hoy las computadoras, optamos nuevamente por un modelo mas fiel, pero que podria ser optimizado mediante la adicion de un "for". 
 ]
 
 ## Mejora de la complejidad computacional
