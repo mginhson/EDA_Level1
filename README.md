@@ -25,15 +25,15 @@ Nicanor Otamendi: [Realizo la mayor parte del codigo visual y la creacion de ast
 
     renderView -> O(n) :simplemente itera por todos los cuerpos y según cierto criterio los renderiza.
 
-    Si en algun momento se requiriece de una mayor velocidad, se podria dejar de calcular la interaccion entre los asteroides. Esto agilizaria muchisimo el calculo y aumentaria la cantidad de fps de la simulacion significativamente, es decir, el algoritmo seria de aproximadamente O(n).
-
-    De todos modos, aprovechando los recursos que ofrecen hoy las computadoras, optamos nuevamente por un modelo mas fiel, pero que podria ser optimizado mediante la adicion de un "for". 
+Para mejorar aun mas el rendimiento, y al ver que la interaccion entre asteroides y planetas apenas modifica en unos pocos metros cada anos las orbitas, decidimos que los asteroides solo puedan recibir fuerzas y no ejercerlas, ya que dado a que su magnitud es minuscula comparada con la de los planetas, estos apenas modificarian las orbitas.
+De este modo:
+    UpdateOrbitalSimOptimized -> O(n), haciendolo mucho mas eficiente que su version anterior.
 ]
 
 ## Mejora de la complejidad computacional
 
-[La complejidad computacional fue primero mejorada al optimizar el cálculo de las interacciones entre planetas. El algoritmo original esta el de UpdateOrbitalSim, y el optimizado es el de UpdateOrbitalSimOptimized. El optimized toma ventaja del hecho de que, entre 2 cuerpos, el vector de fuerzas que se ejercen entre si es el mismo, solo con el sentido opuesto. Entonces, cada OrbitalBody pasa a tener un vector de la fuerza total que es aplicada sobre él (El cual debe estar en {0,0,0} antes de empezar el cálculo). Un cuerpo K itera y calcula la interacción de su fuerza contra todos los cuerpos de índice K+1 hasta n. Por cada cuerpo contra el que itera, se calcula el vector de fuerzas que se suma tanto al de este cuerpo, como su contraparte invertida al cuerpo contra el que itera. Así, el proximo empieza a iterar desde K+2 hasta n. Sucesivamente, cada cuerpo K itera contra K-1 cuerpos, lo cual es una mejora sustancial del algoritmo principal, donde cada cuerpo iteraba contra n-1 cuerpos.
-A su vez, podria optimizarse mas aun la complejidad computacional dejando de calcular la influencia de los asteroides entre ellos mediante un for o un if que permita calcular solo la interaccion con los planetas y el sol. De todos modos, decidimos no implementarlo ya que priorizamos la precision y creemos que a los fines que se utilizan con 1000 asteroides, el codigo funciona correctamente.]
+[La complejidad computacional fue primero mejorada al optimizar el cálculo de las interacciones entre planetas. El algoritmo original esta el de UpdateOrbitalSim, y el optimizado es el de UpdateOrbitalSimOptimized. El optimized toma ventaja del hecho de que, entre 2 cuerpos, el vector de fuerzas que se ejercen entre si es el mismo, solo con el sentido opuesto. Entonces, cada OrbitalBody pasa a tener un vector de la fuerza total que es aplicada sobre él (El cual debe estar en {0,0,0} antes de empezar el cálculo). Un cuerpo K itera y calcula la interacción de su fuerza contra todos los planetas de índice K+1 hasta n. Por cada cuerpo contra el que itera, se calcula el vector de fuerzas que se suma tanto al de este cuerpo, como su contraparte invertida al cuerpo contra el que itera. Así, el proximo empieza a iterar desde K+2 hasta n. Sucesivamente, cada cuerpo K itera contra K-1 cuerpos, lo cual es una mejora sustancial del algoritmo principal, donde cada cuerpo iteraba contra n-1 cuerpos.
+A su vez, se limito la interaccion de los asteroides luego de corroborar su bajo impacto en la simulacion. De manera que los asteroides solo midan la fuerza de atraccion que se ejerce sobre ellos y no la que ellos ejercen (que es insignificante para los planetas u otros asteroides). ]
 
 
 
