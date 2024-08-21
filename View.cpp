@@ -107,6 +107,7 @@ void renderView(View *view, OrbitalSim *sim)
                     sim->bodies[i].color);
     }
 
+        
     for (i=10; i < sim->bodies_count  ; i++)
     {
         dist = Vector3Distance(view->camera.position,Vector3Scale(sim->bodies[i].position,1E-11));
