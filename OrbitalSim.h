@@ -11,7 +11,7 @@
 #include "raylib.h"
 #include "raymath.h"
 
-#define ASTEROIDS_COUNT 10
+#define ASTEROIDS_COUNT 500
 
 /**
  * @brief OrbitalBody definition

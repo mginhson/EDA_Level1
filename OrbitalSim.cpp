@@ -95,10 +95,10 @@ OrbitalSim *constructOrbitalSim(double timeStep)
         return NULL;
     
     //Loads the count of how many bodies are there on the simulation
-    simulation->bodies_count = SOLARSYSTEM_BODYNUM + ASTEROIDS_COUNT;
+    simulation->bodies_count = ALPHACENTAURISYSTEM_BODYNUM + ASTEROIDS_COUNT;
     
     //The first SOLARSYSTEM_BODYNUM bodies are the planets, the ones after this mark are asteroids
-    simulation->planets_range = SOLARSYSTEM_BODYNUM;
+    simulation->planets_range = ALPHACENTAURISYSTEM_BODYNUM;
 
 
     simulation->bodies = (OrbitalBody*) malloc(simulation->bodies_count * sizeof(OrbitalBody));
@@ -106,9 +106,9 @@ OrbitalSim *constructOrbitalSim(double timeStep)
         return NULL;
     
 
-    for(i = 0; i < SOLARSYSTEM_BODYNUM; i++)
+    for(i = 0; i < simulation->planets_range; i++)
     {
-        translateBody(&solarSystem[i],&simulation->bodies[i]);
+        translateBody(&alphaCentauriSystem[i],&simulation->bodies[i]);
     }
 
     for(i = simulation->planets_range; i < simulation->bodies_count; i++)
